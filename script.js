@@ -1,37 +1,36 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener("DOMContentLoaded", function() {
     'use strict';
-
-    let tabBlock = document.querySelector('.info-header'),
-        tab = document.querySelectorAll('.info-header-tab'),
-        tabContent = document.querySelectorAll('.info-tabcontent'),
-        btn = document.querySelectorAll('.description-btn')[0];
-
-    function hideTabContent(a) {
-        for (let i = a; i < tabContent.length; i++) {
-            tabContent[i].classList.remove('show');
-            tabContent[i].classList.add('hide');
-        }
-    }
     
-    hideTabContent(1);
+    let content = document.querySelectorAll('.header__right-side'),  //your tabcontent class
+        navTab = document.querySelector('.header__brend'),           //your tabs' parent (e.g. "ul")
+        tab = document.querySelectorAll('.header__brend-item');      //your tabs
 
-    function showTabContent(b) {
-        if (tabContent[b].classList.contains('hide')) {
-            tabContent[b].classList.remove('hide');
-            tabContent[b].classList.add("show");
+    function removeContent(a) {
+        for ( let i = a; i < content.length; i++) {
+            content[i].classList.remove('show');
+            content[i].classList.add("hide");
+        }
+    }
+    removeContent(1);
+
+    function showContent(b) {
+        if (content[b].classList.contains('hide')) {
+            content[b].classList.remove('hide');
+            content[b].classList.add("show");
         }
     }
 
-    tabBlock.addEventListener('click', function(event) {
+    navTab.addEventListener('click', function(event) {
         let target = event.target;
-        if (target && target.classList.contains("info-header-tab")) {
+        if (target && target.classList.contains('header__brend-item')) {
             for (let i = 0; i < tab.length; i++) {
                 if (target == tab[i]) {
-                    hideTabContent(0);
-                    showTabContent(i);
+                    removeContent(0);
+                    showContent(i);
+                    break;
                 }
             }
         }
     });
-    
+
 });
